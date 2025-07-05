@@ -9,9 +9,9 @@ jobs:
       - name: Install Desktop Environment & VNC
         run: |
           sudo apt update
-          sudo apt install xfce4 xfce4-goodies tightvncserver git -y
+          sudo apt install xfce4 xfce4-goodies tightvncserver git python3 -y
           mkdir -p ~/.vnc
-          echo "chatgpt123" | vncpasswd -f > ~/.vnc/passwd
+          echo "chatgpt" | vncpasswd -f > ~/.vnc/passwd
           chmod 600 ~/.vnc/passwd
           echo "#!/bin/bash
           xrdb $HOME/.Xresources
@@ -23,6 +23,6 @@ jobs:
         run: |
           git clone https://github.com/novnc/noVNC.git ~/noVNC
           git clone https://github.com/novnc/websockify ~/noVNC/utils/websockify
-          nohup ~/noVNC/utils/launch.sh --vnc localhost:5901 --listen 6080 &
+          cd ~/noVNC
+          nohup python3 ./utils/novnc_proxy --vnc localhost:5901 --listen 6080 &
           sleep 10
-          nohup ssh -o StrictHostKeyChecking=no -R 80:localhost:6080 serveo.net &
