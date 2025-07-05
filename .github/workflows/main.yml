@@ -11,7 +11,7 @@ jobs:
           sudo apt update
           sudo apt install xfce4 xfce4-goodies tightvncserver git -y
           mkdir -p ~/.vnc
-          echo "yourpassword" | vncpasswd -f > ~/.vnc/passwd
+          echo "chatgpt123" | vncpasswd -f > ~/.vnc/passwd
           chmod 600 ~/.vnc/passwd
           echo "#!/bin/bash
           xrdb $HOME/.Xresources
